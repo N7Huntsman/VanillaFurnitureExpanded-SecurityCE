@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Patch>
+
+  <Operation Class='PatchOperationSequence'>
+    <success>Always</success>
+
+    <operations>
+      <li Class='CombatExtended.PatchOperationFindMod'>
+        <modName>Combat Extended</modName>
+      </li>
+
+      <!-- Remove refuelable property -->
+      <li Class='PatchOperationRemove'>
+        <xpath>Defs/ThingDef[defName = 'VFES_Turret_ChargeTurret']/comps/li[@Class = 'CompProperties_Refuelable']</xpath>
+      </li>
+
+      <!-- Replace vanilla thingClass for CE's -->
+      <li Class='PatchOperationReplace'>
+        <xpath>Defs/ThingDef[defName = 'VFES_Turret_ChargeTurret']/thingClass</xpath>
+
+        <value>
+          <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+        </value>
+      </li>
+
+      <!-- Fill percent 0.65 -> 0.85 -->
+      <li Class='PatchOperationReplace'>
+        <xpath>Defs/ThingDef[defName = 'VFES_Turret_ChargeTurret']/fillPercent</xpath>
+
+        <value>
+          <fillPercent>0.85</fillPercent>
+        </value>
+      </li>
+
+      <!-- Turret Gun compat -->
+      <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+        <defName>VFES_Gun_ChargeTurret</defName>
+
+        <statBases>
+          <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+          <SightsEfficiency>1</SightsEfficiency>
+          <ShotSpread>0.08</ShotSpread>
+          <SwayFactor>0.46</SwayFactor>
+        </statBases>
+
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+          <warmupTime>1.1</warmupTime>
+          <range>50</range>
+          <burstShotCount>10</burstShotCount>
+          <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+          <soundCast>GunShotA</soundCast>
+          <soundCastTail>GunTail_Light</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+          <recoilPattern>Mounted</recoilPattern>
+        </Properties>
+
+        <AmmoUser>
+          <magazineSize>100</magazineSize>
+          <reloadTime>4.9</reloadTime>
+          <ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+        </AmmoUser>
+
+        <weaponTags Inherit="false">
+          <li>TurretGun</li>
+        </weaponTags>
+      </li>
+    </operations>
+  </Operation>
+
+</Patch>

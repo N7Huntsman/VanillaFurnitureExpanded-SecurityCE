@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Patch>
+
+  <Operation Class='PatchOperationSequence'>
+    <success>Always</success>
+
+    <operations>
+      <li Class='CombatExtended.PatchOperationFindMod'>
+        <modName>Combat Extended</modName>
+      </li>
+
+      <!-- Remove refuelable property -->
+      <li Class='PatchOperationRemove'>
+        <xpath>Defs/ThingDef[defName = 'VFES_Turret_TriRocket']/comps/li[@Class = 'CompProperties_Refuelable']</xpath>
+      </li>
+
+      <!-- Replace vanilla thingClass for CE's -->
+      <li Class='PatchOperationReplace'>
+        <xpath>Defs/ThingDef[defName = 'VFES_Turret_TriRocket']/thingClass</xpath>
+
+        <value>
+          <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+        </value>
+      </li>
+
+      <!-- Fill percent 0.65 -> 0.85 -->
+      <li Class='PatchOperationReplace'>
+        <xpath>Defs/ThingDef[defName = 'VFES_Turret_TriRocket']/fillPercent</xpath>
+
+        <value>
+          <fillPercent>0.85</fillPercent>
+        </value>
+      </li>
+
+      <!-- Turret Gun compat -->
+      <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+        <defName>VFES_TurretTriRocket_Top</defName>
+
+        <statBases>
+          <RangedWeapon_Cooldown>5.2</RangedWeapon_Cooldown>
+          <SightsEfficiency>1</SightsEfficiency>
+          <ShotSpread>0.05</ShotSpread>
+          <SwayFactor>1.59</SwayFactor>
+          <Bulk>25.54</Bulk>
+        </statBases>
+
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_RPG32Rocket_HEAT</defaultProjectile>
+          <warmupTime>1.2</warmupTime>
+          <range>70</range>
+          <burstShotCount>3</burstShotCount>
+          <ticksBetweenBurstShots>16</ticksBetweenBurstShots>
+          <soundCast>InfernoCannon_Fire</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>16</muzzleFlashScale>
+          <recoilPattern>Mounted</recoilPattern>
+          <targetParams>
+            <canTargetLocations>True</canTargetLocations>
+          </targetParams>
+        </Properties>
+
+        <AmmoUser>
+          <magazineSize>6</magazineSize>
+          <reloadTime>10.5</reloadTime>
+          <ammoSet>AmmoSet_RPG32Rocket</ammoSet>
+        </AmmoUser>
+
+        <FireModes />
+
+        <weaponTags Inherit="false">
+          <li>TurretGun</li>
+        </weaponTags>
+      </li>
+    </operations>
+  </Operation>
+
+</Patch>

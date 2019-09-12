@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Patch>
+
+  <Operation Class='PatchOperationSequence'>
+    <success>Always</success>
+
+    <operations>
+      <li Class='CombatExtended.PatchOperationFindMod'>
+        <modName>Combat Extended</modName>
+      </li>
+
+      <!-- Replace vanilla thingClass for CE's -->
+      <li Class='PatchOperationReplace'>
+        <xpath>Defs/ThingDef[defName = 'VFES_Turret_Artillery']/thingClass</xpath>
+
+        <value>
+          <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+        </value>
+      </li>
+
+      <!-- Remove tile targeting comp (compat issues) -->
+      <li Class='PatchOperationRemove'>
+        <xpath>Defs/ThingDef[defName = 'VFES_Turret_Artillery']/comps/li[@Class = 'VFESecurity.CompProperties_LongRangeArtillery']</xpath>
+      </li>
+
+      <!-- Turret Gun compat -->
+      <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+        <defName>VFES_Artillery_Weapon</defName>
+
+        <statBases>
+          <RangedWeapon_Cooldown>1.8</RangedWeapon_Cooldown>
+          <SightsEfficiency>1</SightsEfficiency>
+          <ShotSpread>0.05</ShotSpread>
+          <SwayFactor>1.59</SwayFactor>
+        </statBases>
+
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_90mmCannonShell_HEAT</defaultProjectile>
+          <warmupTime>8</warmupTime>
+          <range>700</range>
+          <burstShotCount>1</burstShotCount>
+          <soundCast>VFES_Shot_Artillery</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>32</muzzleFlashScale>
+          <recoilPattern>Mounted</recoilPattern>
+          <targetParams>
+            <canTargetLocations>True</canTargetLocations>
+          </targetParams>
+        </Properties>
+
+        <AmmoUser>
+          <magazineSize>1</magazineSize>
+          <reloadTime>6.9</reloadTime>
+          <ammoSet>AmmoSet_90mmCannonShell</ammoSet>
+        </AmmoUser>
+
+        <FireModes />
+
+        <weaponTags Inherit="false">
+          <li>TurretGun</li>
+        </weaponTags>
+      </li>
+    </operations>
+  </Operation>
+
+</Patch>

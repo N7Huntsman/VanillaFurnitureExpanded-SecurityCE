@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+    <defName>Bullet_VFES_EMPCannon</defName>
+    <label>EMP Blast</label>
+    
+    <graphicData>
+      <texPath>Things/Projectile/Charge_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>EMP</damageDef>
+      <damageAmountBase>42</damageAmountBase>
+      <speed>130</speed>
+    </projectile>
+  </ThingDef>
+
+</Defs>
