@@ -4,7 +4,6 @@
 	<Operation Class="PatchOperationSequence">
 		<operations>
 
-
 		  <!-- ========== Catapult - Base ========== -->
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="VFES_Turret_Catapult"]/thingClass</xpath>
@@ -63,7 +62,7 @@
 						<magazineSize>1</magazineSize>
 						<reloadTime>12</reloadTime>
 						<spawnUnloaded>true</spawnUnloaded>
-						<ammoSet>AmmoSet_81mmMortarShell</ammoSet>
+						<ammoSet>AmmoSet_CatapultStone</ammoSet>
 					  </li>
 				</value>
 			</li>
@@ -76,7 +75,7 @@
 						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
 						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_81mmMortarShell_HE</defaultProjectile>
+						<defaultProjectile>Projectile_CatapultBullet_Sandstone</defaultProjectile>
 						<warmupTime>4</warmupTime>
 						<minRange>30</minRange>
 						<range>500</range>
@@ -106,9 +105,69 @@
 					  <li>TurretGun</li>
 				</value>
 			</li>
-
+			<!--
 			<li Class="PatchOperationRemove">
 				<xpath>/Defs/ThingDef[defName = "VFES_Artillery_Rock"]</xpath>
+			</li>
+			-->
+		  <!-- ========== Catapult - Patch Stone Chunks ========== -->
+
+			<li Class="PatchOperationAttributeAdd">
+				<xpath>/Defs/ThingDef[defName="ChunkSandstone" or
+				defName="ChunkGranite" or
+				defName="ChunkMarble" or
+				defName="ChunkLimestone" or
+				defName="ChunkSlate"				
+				]</xpath>
+				<attribute>Class</attribute>
+				<value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="ChunkSandstone"]</xpath>
+				<value>
+					<ammoClass>CatapultStone_Sandstone</ammoClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="ChunkSlate"]</xpath>
+				<value>
+					<ammoClass>CatapultStone_Slate</ammoClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="ChunkGranite"]</xpath>
+				<value>
+					<ammoClass>CatapultStone_Granite</ammoClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="ChunkMarble"]</xpath>
+				<value>
+					<ammoClass>CatapultStone_Marble</ammoClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="ChunkLimestone"]</xpath>
+				<value>
+					<ammoClass>CatapultStone_Limestone</ammoClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="ChunkSandstone" or
+				defName="ChunkGranite" or
+				defName="ChunkMarble" or
+				defName="ChunkLimestone" or
+				defName="ChunkSlate"				
+				]</xpath>
+				<value>
+					<thingClass>CombatExtended.AmmoThing</thingClass>					
+				</value>
 			</li>
 
 		</operations>	
