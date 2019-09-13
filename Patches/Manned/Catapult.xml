@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
+
+
+		  <!-- ========== Catapult - Base ========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFES_Turret_Catapult"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VFES_Turret_Catapult"]/building</xpath>
+				<value>
+					<spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFES_Turret_Catapult"]/building/turretBurstWarmupTime</xpath>
+				<value>
+					<turretBurstWarmupTime>1</turretBurstWarmupTime>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFES_Turret_Catapult"]/building/turretBurstCooldownTime</xpath>
+				<value>
+					<turretBurstCooldownTime>1</turretBurstCooldownTime>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="VFES_Turret_Catapult"]/inspectorTabs</xpath>
+			</li>
+
+		  <!-- ========== Catapult - Weapon ========== -->			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VFES_Artillery_Catapult"]</xpath>
+				<value>
+					<statBases>
+					  <SightsEfficiency>0.5</SightsEfficiency>
+					</statBases>
+				</value>
+			</li>
+		  
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName = "VFES_Artillery_Catapult"]/comps</xpath>
+				<value>
+					  <li Class="CombatExtended.CompProperties_Charges">
+						<chargeSpeeds>
+						  <li>30</li>
+						  <li>50</li>
+						  <li>70</li>
+						  <li>90</li>
+						</chargeSpeeds>
+					  </li>
+					  <li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>1</magazineSize>
+						<reloadTime>12</reloadTime>
+						<spawnUnloaded>true</spawnUnloaded>
+						<ammoSet>AmmoSet_81mmMortarShell</ammoSet>
+					  </li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName = "VFES_Artillery_Catapult"]/verbs</xpath>
+				<value>
+					<verbs>
+					  <li Class="CombatExtended.VerbPropertiesCE">
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_81mmMortarShell_HE</defaultProjectile>
+						<warmupTime>4</warmupTime>
+						<minRange>30</minRange>
+						<range>500</range>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>Bow_Recurve</soundCast>
+						<muzzleFlashScale>0</muzzleFlashScale>
+						<indirectFirePenalty>0.2</indirectFirePenalty>
+						<targetParams>
+						  <canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					  </li>
+					</verbs>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "VFES_Artillery_Catapult"]/building/fixedStorageSettings</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "VFES_Artillery_Catapult"]/building/defaultStorageSettings</xpath>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName = "VFES_Artillery_Catapult"]/weaponTags</xpath>
+				<value>
+					  <li>TurretGun</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "VFES_Artillery_Rock"]</xpath>
+			</li>
+
+		</operations>	
+	</Operation>
+
+</Patch>			
